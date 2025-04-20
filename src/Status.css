@@ -1,0 +1,23 @@
+.status-container {
+  margin: 1rem 0;
+}
+
+.status-error {
+  background-color: #f8d7da;
+  color: #721c24;
+  padding: 1rem;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.status-icon {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+.status-message {
+  font-size: 0.95rem;
+}

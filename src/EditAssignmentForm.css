@@ -1,0 +1,43 @@
+.edit-assignment-form {
+  padding: 1rem;
+  border: 1px solid var(--primary-color);
+  border-radius: 6px;
+  background-color: white;
+}
+
+.edit-form-title {
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+  color: var(--primary-color);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.edit-icon {
+  width: 20px;
+  height: 20px;
+}
+
+.edit-form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  margin-top: 1.5rem;
+}
+
+.form-action-icon {
+  width: 16px;
+  height: 16px;
+  margin-right: 0.25rem;
+}
+
+@media (max-width: 768px) {
+  .edit-form-actions {
+    flex-direction: column-reverse;
+  }
+  
+  .edit-form-actions button {
+    width: 100%;
+  }
+}
