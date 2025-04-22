@@ -4,13 +4,13 @@
 
 This project is a Classwork Tracking System, developed as a Single Page Application (SPA) using React and Vite for the frontend, and Node.js with Express for the backend REST API. It allows users to manage their academic assignments effectively.
 
-Users can register for an account (usernames only, no passwords) and log in to manage their personal list of assignments. Key functionalities include adding (feature currently missing UI), viewing, editing details (title, subject, due date, description), marking assignments as complete or incomplete, and deleting assignments.
+Users can register for an account (usernames only, no passwords) and log in to manage their personal list of assignments. Key functionalities include adding, viewing, editing details (title, subject, due date, description), marking assignments as complete or incomplete, and deleting assignments.
 
 The application provides features to filter assignments by completion status or subject, sort them by due date, title, or subject, and perform a client-side keyword search across assignment details. A dashboard displays statistics about the user's progress, including total, completed, pending assignments, completion rate, upcoming and overdue tasks, and a breakdown by subject. The assignment list and statistics automatically update via polling.
 
-A special 'admin' user role exists with backend support for managing subjects and potentially viewing/managing all user data, although the corresponding frontend Admin Panel is not implemented in this version.
+A special 'admin' user role exists with features for managing subjects and viewing/managing all user data through a comprehensive Admin Panel with different tabs for various management functions.
 
-This project demonstrates proficiency in building modern web applications, including React component structure, state management (`useState`, `useReducer`), handling asynchronous operations with Promises (`Workspace` without `async/await`), RESTful API design with Express, session management using cookies, input validation (frontend and backend), and adherence to specific project constraints like avoiding routing libraries and certain external dependencies.
+This project demonstrates proficiency in building modern web applications, including React component structure, state management (`useState`, `useReducer`), handling asynchronous operations with Promises (`fetch` without `async/await`), RESTful API design with Express, session management using cookies, input validation (frontend and backend), and adherence to specific project constraints like avoiding routing libraries and certain external dependencies.
 
 ## Features
 
@@ -20,14 +20,14 @@ This project demonstrates proficiency in building modern web applications, inclu
     * Session management using secure cookies (`sid`)
 * **Assignment Management (Per User):**
     * View assignment list
+    * Add new assignments (via the "Add New Assignment" toggle button below the assignment list)
     * Edit assignment details (Title, Subject, Due Date, Description)
     * Toggle assignment completion status
     * Delete assignments (with confirmation dialog)
-    * *(Note: UI for adding new assignments (`AddAssignmentForm.jsx`) is missing)*
 * **Assignment Display & Interaction:**
     * Shows assignment title, subject, due date, description.
     * Visual status indicators (Completed, Pending, Due Soon, Overdue) based on completion status and due date.
-    * Highlight newly added assignment (if Add form were present).
+    * Highlight newly added assignment.
 * **Filtering, Sorting, Searching:**
     * Filter by status: All, Pending, Completed.
     * Filter by subject (dynamic list fetched from server).
@@ -39,7 +39,7 @@ This project demonstrates proficiency in building modern web applications, inclu
     * Visualizes progress per subject (Completion count and percentage).
 * **Real-time Updates:**
     * Uses polling (every 5 seconds) to automatically refresh assignment list and statistics when logged in.
-* **Admin Features (Backend Implemented, Frontend UI Missing):**
+* **Admin Features:**
     * 'admin' user has distinct privileges.
     * Add new subjects (accessible via the Edit Assignment form for admin).
     * Delete subjects.
@@ -87,23 +87,26 @@ This project demonstrates proficiency in building modern web applications, inclu
 2.  **Login:** If you already have an account, enter your username on the login screen and click "Login".
 3.  **Main View (Logged In):**
     * **Header:** Shows the application title and your username (with an "Admin" badge if logged in as 'admin').
-    * **Controls:** Contains the "Logout" button. If logged in as 'admin', an "Admin Panel" button appears (though the panel itself is not implemented).
+    * **Controls:** Contains the "Logout" button. If logged in as 'admin', an "Admin Panel" button appears.
     * **Dashboard:** Displays your assignment statistics.
     * **Filters & Sorting:** Click this section to expand options. You can filter by status, subject, search by keyword, and change the sorting order. The list updates automatically.
     * **Assignment List:** Shows your assignments based on current filters and sorting.
         * **Checkbox:** Toggle completion status.
         * **Pencil Icon:** Opens the edit form for that assignment.
         * **Trash Icon:** Deletes the assignment after confirmation.
+    * **Adding Assignments:** Scroll to the bottom of the assignment list to find the "Add New Assignment" button. Click it to expand the form, fill in the details, and click "Add Assignment".
     * **Edit Form:** Modify assignment details. Admins can also add new subjects directly from this form. Click "Save Changes" or "Cancel".
-    * **(Missing Feature):** There is currently no UI button/form to add a new assignment.
-4.  **Logout:** Click the "Logout" button in the controls section.
+4.  **Admin Panel:** If logged in as 'admin', you can access the Admin Panel which includes tabs for viewing all users' assignments, managing subjects, and viewing system-wide statistics.
+5.  **Logout:** Click the "Logout" button in the controls section.
 
 ## Admin User
 
 * A predefined user with administrative privileges is **`admin`**.
 * Log in with the username `admin` to gain access to admin features.
-* Currently, the main visible admin feature is the ability to add new subjects via the inline "Add new subject" input within the Edit Assignment form.
-* Backend routes for viewing all data and managing subjects/users exist but lack a dedicated frontend UI (`AdminPanel.jsx` is missing).
+* The Admin Panel provides three tabs:
+  * **All Assignments**: View and manage assignments from all users
+  * **Subject Management**: Add and delete subjects
+  * **System Stats**: View system-wide statistics including user counts and assignment completion rates
 
 ## Assets and Licensing
 
@@ -113,8 +116,5 @@ This project demonstrates proficiency in building modern web applications, inclu
 
 ## Known Issues / Limitations
 
-* **Missing UI Components:**
-    * The form/button to add new assignments (`AddAssignmentForm.jsx`) is not implemented.
-    * The Admin Panel UI (`AdminPanel.jsx`) for accessing backend admin features is not implemented.
 * **Client-Side Operations:** Searching, sorting, and pagination are currently performed client-side within the fetched data set due to backend limitations. The backend API for assignments does not support server-side pagination or keyword search parameters.
 * **Browser Navigation:** The application does not reliably handle browser back/forward button navigation, as per project requirements disallowing the use of routing libraries like `react-router`. Application state is managed internally.
